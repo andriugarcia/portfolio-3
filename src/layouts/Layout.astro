@@ -1,4 +1,5 @@
 ---
+import NavigationItem from "../components/NavigationItem.astro";
 interface Props {
 	title: string;
 }
@@ -16,10 +17,18 @@ const { title } = Astro.props;
 		<meta name="generator" content={Astro.generator} />
 		<title>{title}</title>
 	</head>
-	<body>
+	<body class="light:text-white bg-stone-100">
+		<div class="fixed top-0 left-1/2 -translate-x-1/2 w-fit flex rounded-xl border border-black">
+			<NavigationItem name="home"></NavigationItem>
+			<NavigationItem name="about"></NavigationItem>
+			<NavigationItem name="projects"></NavigationItem>
+		</div>
 		<slot />
 	</body>
 </html>
+<script is:inline>
+	document.documentElement.classList.add("light");
+</script>
 <style is:global>
 	:root {
 		--accent: 136, 58, 234;
@@ -34,7 +43,6 @@ const { title } = Astro.props;
 	}
 	html {
 		font-family: system-ui, sans-serif;
-		background: #13151a;
 	}
 	code {
 		font-family:
